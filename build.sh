@@ -2,6 +2,8 @@
 
 echo "Building..."
 
+dart pub get
+
 mkdir build
 
 dart compile exe bin/nlg_cli.dart -o build/nlg
