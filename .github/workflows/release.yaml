@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    name: Release new version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setting up Dart
+        uses: cedx/setup-dart@v3
+      - name: Package
+        run: ./build.sh
+        shell: bash
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: nlg_cli-${{ github.ref_name }}.zip

@@ -2,7 +2,12 @@
   "canvas": {
     "base": "vite_vanilla",
     "create": [],
-    "override": [],
-    "delete": []
+    "override": [
+      {
+        "name": "src/main.ts",
+        "content": "import './style.css';"
+      }
+    ],
+    "delete": ["public/vite.svg", "src/counter.ts", "src/typescript.svg"]
   }
 }

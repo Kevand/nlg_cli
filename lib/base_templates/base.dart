@@ -19,7 +19,7 @@ class BaseTemplate {
 
     for (Map<String, String> f in fileList) {
       final fileName = f["name"] as String;
-      final content = f["name"] as String;
+      final content = f["content"] as String;
 
       File actualFile = File(path.join(projectDir, fileName));
 
@@ -40,7 +40,7 @@ class BaseTemplate {
 
     for (Map<String, String> f in fileList) {
       final fileName = f["name"] as String;
-      final content = f["name"] as String;
+      final content = f["content"] as String;
 
       File actualFile = File(path.join(projectDir, fileName));
 
