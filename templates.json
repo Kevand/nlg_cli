@@ -1,8 +1,8 @@
 {
-    "canvas": {
-        "base": "vite_vanilla",
-        "create": [],
-        "override": [],
-        "delete": []
-    }
+  "canvas": {
+    "base": "vite_vanilla",
+    "create": [],
+    "override": [],
+    "delete": []
+  }
 }

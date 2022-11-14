@@ -6,12 +6,12 @@ import 'package:nlg_cli/print_util.dart';
 
 Directory _workingDirectory = Directory.current;
 
-class Vite extends BaseTemplate{
+class Vite extends BaseTemplate {
   Vite(String name, Map<String, dynamic> template) : super(name, template);
 
   Future<void> createVanillaProject() async {
     await _runProcess("vanilla-ts");
-    
+
     await createFiles();
     await overrideFiles();
     await deleteFiles();
@@ -29,7 +29,7 @@ class Vite extends BaseTemplate{
       runInShell: true,
     );
 
-    if(result.exitCode > 0) {
+    if (result.exitCode > 0) {
       printError("There was an error during finishing faze");
       return;
     }
@@ -44,11 +44,10 @@ class Vite extends BaseTemplate{
       stderrEncoding: Encoding.getByName("utf-8"),
     );
 
-    if(result.exitCode > 0){
-      printError("Process finished with unexpected exit code ${result.exitCode}, Error: ${result.stderr}");
+    if (result.exitCode > 0) {
+      printError(
+          "Process finished with unexpected exit code ${result.exitCode}, Error: ${result.stderr}");
       return;
     }
   }
 }
-
-

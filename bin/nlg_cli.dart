@@ -7,30 +7,33 @@ import 'package:nlg_cli/print_util.dart';
 import 'package:nlg_cli/util.dart';
 
 void main(List<String> arguments) {
-  if(arguments.isEmpty){
+  if (arguments.isEmpty) {
     printInfo("Syntax: nlg <command> <arguments>");
     return;
   }
 
   final String command = arguments[0];
-  
-  switch(command){
-    case "create": {
-      final String templateName = arguments[1];
-      final String projectName = arguments[2];
 
-      nlg_cli.createProject(templateName, projectName);
-      break;
-    }
-    case "templates": {
-      File templatesFile = File("${getExecPath()}/templates.json");
+  switch (command) {
+    case "create":
+      {
+        final String templateName = arguments[1];
+        final String projectName = arguments[2];
 
-      Map<String, dynamic> asJson = jsonDecode(templatesFile.readAsStringSync());
+        nlg_cli.createProject(templateName, projectName);
+        break;
+      }
+    case "templates":
+      {
+        File templatesFile = File("${getExecPath()}/templates.json");
 
-      asJson.forEach((key, value) {
-        print(key);
-      });
-      break;
-    }
+        Map<String, dynamic> asJson =
+            jsonDecode(templatesFile.readAsStringSync());
+
+        asJson.forEach((key, value) {
+          print(key);
+        });
+        break;
+      }
   }
 }

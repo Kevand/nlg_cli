@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:nlg_cli/print_util.dart';
 import 'package:path/path.dart' as path;
 
-class BaseTemplate{
+class BaseTemplate {
   final String projectName;
   final Map<String, dynamic> _template;
 
@@ -17,13 +17,13 @@ class BaseTemplate{
     //get list of files
     final fileList = _template["create"] as List<dynamic>;
 
-    for(Map<String, String> f in fileList){
+    for (Map<String, String> f in fileList) {
       final fileName = f["name"] as String;
       final content = f["name"] as String;
 
       File actualFile = File(path.join(projectDir, fileName));
 
-      if(await actualFile.exists()){
+      if (await actualFile.exists()) {
         printWarning("There is a file called $fileName, skipping");
         continue;
       }
@@ -38,13 +38,13 @@ class BaseTemplate{
     //get list of files
     final fileList = _template["override"] as List<dynamic>;
 
-    for(Map<String, String> f in fileList){
+    for (Map<String, String> f in fileList) {
       final fileName = f["name"] as String;
       final content = f["name"] as String;
 
       File actualFile = File(path.join(projectDir, fileName));
 
-      if(!(await actualFile.exists())){
+      if (!(await actualFile.exists())) {
         printWarning("There is no file called $fileName, skipping");
         continue;
       }
@@ -59,11 +59,10 @@ class BaseTemplate{
     //get list of files
     final fileList = _template["delete"] as List<dynamic>;
 
-
-    for(String fileName in fileList){
+    for (String fileName in fileList) {
       File actualFile = File(path.join(projectDir, fileName));
 
-      if(!(await actualFile.exists())){
+      if (!(await actualFile.exists())) {
         printWarning("There is no file called $fileName, skipping");
         continue;
       }
@@ -73,5 +72,4 @@ class BaseTemplate{
       await actualFile.delete();
     }
   }
-
 }

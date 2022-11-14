@@ -8,9 +8,9 @@ import "package:nlg_cli/util.dart";
 File templatesFile = File("${getExecPath()}/templates.json");
 
 Future<void> createProject(String templateName, String projectName) async {
-  if(!(await templatesFile.exists())) {
+  if (!(await templatesFile.exists())) {
     printError("There is no template file");
-    }
+  }
 
   final String fileContent = await templatesFile.readAsString();
 
@@ -22,7 +22,7 @@ Future<void> createProject(String templateName, String projectName) async {
     return;
   }
 
-  if(!fileRoot.containsKey(templateName)) {
+  if (!fileRoot.containsKey(templateName)) {
     printError("There is no template called $templateName");
     return;
   }
@@ -31,15 +31,14 @@ Future<void> createProject(String templateName, String projectName) async {
 
   printInfo("Creating project $projectName via $templateName");
 
-  switch(selectedTemplate["base"]){
-    case "vite_vanilla": 
+  switch (selectedTemplate["base"]) {
+    case "vite_vanilla":
       Vite v = Vite(projectName, selectedTemplate);
       await v.createVanillaProject();
       printInfo("Finished");
-    break;
+      break;
     default:
       printError("Unknown template base");
-    break;
+      break;
   }
 }
-
