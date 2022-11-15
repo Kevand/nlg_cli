@@ -14,7 +14,7 @@ jobs:
       - name: Setting up Dart
         uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: 2.19.0-390.0.dev
+          sdk: dev
       - run: dart pub get
       - run: dart analyze
       - name: Package
