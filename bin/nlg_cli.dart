@@ -30,9 +30,10 @@ void main(List<String> arguments) {
         Map<String, dynamic> asJson =
             jsonDecode(templatesFile.readAsStringSync());
 
-        asJson.forEach((key, value) {
-          print(key);
-        });
+        for (int i = 0; i < asJson.length; i++) {
+          print("$i. ${asJson.keys.elementAt(i)}");
+        }
+
         break;
       }
   }
