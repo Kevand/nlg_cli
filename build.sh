@@ -10,8 +10,8 @@ cp templates.json build/templates.json
 if [ "$1" = "github-release" ]; then
     echo "Creating package"
     cd build
-    zip -r "nlg_cli-${{github.ref_name}}.zip" *
-    mv "nlg_cli-${{github.ref_name}}.zip" ..
+    zip -r "nlg_cli-$2.zip" *
+    mv "nlg_cli-$2.zip" ..
     cd ..
     rm -r build
 fi
