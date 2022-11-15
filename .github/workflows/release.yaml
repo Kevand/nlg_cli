@@ -16,7 +16,7 @@ jobs:
       - run: dart pub get
       - run: dart analyze
       - name: Package
-        run: ./build.sh
+        run: ./build.sh github-release
         shell: bash
       - name: Release
         uses: softprops/action-gh-release@v1
