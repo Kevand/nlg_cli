@@ -9,7 +9,7 @@ class TemplateModel {
   TemplateModel(this.name);
 
   TemplateModel.fromJson(Map<String, dynamic> json) : name = json['name'] {
-    description = json['description'];
+    description = json['desc'];
     base = json['base'];
     files = json['files'];
     directories = json['dirs'];
