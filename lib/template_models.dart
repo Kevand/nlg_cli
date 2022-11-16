@@ -11,10 +11,10 @@ class TemplateModel {
   TemplateModel.fromJson(Map<String, dynamic> json) : name = json['name'] {
     description = json['desc'];
     base = json['base'];
-    files = json['files'];
-    directories = json['dirs'];
-    initProcess = json['init'];
-    finishProcess = json['finish'];
+    files = FileActionsModel.fromJson(json['files']);
+    directories = DirectoryActionsModel.fromJson(json['dirs']);
+    initProcess = ProcessModel.fromJson(json['init']);
+    finishProcess = ProcessModel.fromJson(json['finish']);
   }
 }
 
