@@ -1,16 +1,17 @@
 class TemplateModel {
   final String name;
-  String? description;
+  String description;
   String? base;
   FileActionsModel? files;
   DirectoryActionsModel? directories;
   ProcessModel? initProcess, finishProcess;
 
-  TemplateModel(this.name);
+  TemplateModel(this.name, this.description);
 
-  TemplateModel.fromJson(Map<String, dynamic> json) : name = json['name'] {
-    description = json['desc'];
-    base = json['base'];
+  TemplateModel.fromJson(Map<String, dynamic> json)
+      : name = json['name'] as String,
+        description = json['desc'] as String {
+    base = json['base'] as String;
     files = FileActionsModel.fromJson(json['files']);
     directories = DirectoryActionsModel.fromJson(json['dirs']);
     initProcess = ProcessModel.fromJson(json['init']);
@@ -30,15 +31,16 @@ class ProcessModel {
 }
 
 class IOActionsModel<T> {
-  List<T>? create;
-  List<T>? override;
-  List<String>? delete;
+  List<T> create;
+  List<T> override;
+  List<String> delete;
 
-  IOActionsModel.fromJson(Map<String, dynamic> json) {
-    create = json['create'];
-    override = json['override'];
-    delete = json['delete'];
-  }
+  IOActionsModel(this.create, this.override, this.delete);
+
+  IOActionsModel.fromJson(Map<String, dynamic> json)
+      : create = json['create'] as List<T>,
+        override = json['override'] as List<T>,
+        delete = json['delete'] as List<String>;
 }
 
 class FileActionsModel extends IOActionsModel<ContentFileModel> {
@@ -56,6 +58,6 @@ class ContentFileModel {
   ContentFileModel(this.name, this.content);
 
   ContentFileModel.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        content = json['content'];
+      : name = json['name'] as String,
+        content = json['content'] as String;
 }
