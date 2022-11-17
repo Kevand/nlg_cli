@@ -3,7 +3,7 @@
 Simple CLI app with various utilites, made for my own use
 
 ### Template syntax
-
+```
 {  
     name: String  
     desc: String?  
@@ -39,7 +39,8 @@ Simple CLI app with various utilites, made for my own use
         name: "npm",  
         args: [ "install" ]  
     }  
-}  
+}
+```
 
 ### Roadmap
 
