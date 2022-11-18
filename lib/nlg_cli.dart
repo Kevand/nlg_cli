@@ -1,44 +1,25 @@
-import "dart:convert";
-import "dart:io";
-
-import "package:nlg_cli/base_templates/vite.dart";
+import 'package:nlg_cli/commands/cli_command.dart';
+import 'package:nlg_cli/commands/commands.dart';
 import "package:nlg_cli/print_util.dart";
-import "package:nlg_cli/util.dart";
 
-File templatesFile = File("${getExecPath()}/templates.json");
+Set<CLICommand> commandRegistry = {};
 
-Future<void> createProject(String templateName, String projectName) async {
-  if (!(await templatesFile.exists())) {
-    printError("There is no template file");
-  }
+void registerCommands() async {
+  commandRegistry.add(HELP_COMMAND);
+  commandRegistry.add(CREATE_COMMAND);
+  commandRegistry.add(TOOLS_COMMAND);
+}
 
-  final String fileContent = await templatesFile.readAsString();
-
-  Map<String, dynamic> fileRoot;
+Future<void> resolveCommand(List<String> arguments) async {
+  final String name = arguments[0];
   try {
-    fileRoot = jsonDecode(fileContent);
-  } catch (e) {
-    printError("There was an error parsing templates file: $e");
-    return;
-  }
-
-  if (!fileRoot.containsKey(templateName)) {
-    printError("There is no template called $templateName");
-    return;
-  }
-
-  Map<String, dynamic> selectedTemplate = fileRoot[templateName];
-
-  printInfo("Creating project $projectName via $templateName");
-
-  switch (selectedTemplate["base"]) {
-    case "vite_vanilla":
-      Vite v = Vite(projectName, selectedTemplate);
-      await v.createVanillaProject();
-      printInfo("Finished");
-      break;
-    default:
-      printError("Unknown template base");
-      break;
+    final cmd = commandRegistry.singleWhere((element) => element.name == name);
+    cmd.execute(arguments);
+  } catch (err) {
+    if (err is StateError) {
+      printError("Unknown command: $name");
+    } else {
+      printError("Unknown error");
+    }
   }
 }

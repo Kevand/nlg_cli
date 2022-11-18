@@ -1,6 +1,10 @@
-# nlg_cli
+# NLG CLI
 
-Simple CLI app with various utilites, made for my own use
+Simple(currently) CLI app with various utilites, made for my own use
+
+### Features (WIP)
+1. Creating projects from custom made templates
+2. Managing developer tools like SDK's, package managers etc...
 
 ### Template syntax
 ```
